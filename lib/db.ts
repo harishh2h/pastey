@@ -1,31 +1,10 @@
 import { neon } from '@neondatabase/serverless';
 
-/**
- * SQL query executor using Neon serverless driver.
- * 
- * SECURITY: The template literal syntax (sql`...`) automatically uses
- * parameterized queries, preventing SQL injection attacks.
- * Variables passed via ${variable} are safely parameterized.
- * 
- * Example (safe):
- *   sql`SELECT * FROM pastes WHERE id = ${id}`
- * 
- * This is equivalent to:
- *   SELECT * FROM pastes WHERE id = $1  -- with id as parameter
- */
+
 const sql = neon(process.env.DATABASE_URL!);
 
 let schemaInitPromise: Promise<void> | null = null;
 
-/**
- * Initialize database schema (idempotent).
- * Uses a shared promise to ensure schema is initialized only once,
- * even if multiple requests arrive during a cold start.
- * 
- * In serverless environments, this will run on the first request
- * of each function instance, then be cached for subsequent requests
- * in the same instance.
- */
 async function initSchema(): Promise<void> {
   if (schemaInitPromise) {
     return schemaInitPromise;
