@@ -1,10 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 
-const sql = neon(process.env.DATABASE_URL!, {
-  fetchOptions: {
-    signal: AbortSignal.timeout(10000),
-  },
-});
+const sql = neon(process.env.DATABASE_URL!);
 
 let schemaInitPromise: Promise<void> | null = null;
 let isSchemaInitialized = false;
