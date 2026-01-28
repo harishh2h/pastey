@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function Home(): JSX.Element {
+export default function Home() {
   const [content, setContent] = useState('');
   const [showTtl, setShowTtl] = useState(false);
   const [showMaxViews, setShowMaxViews] = useState(false);

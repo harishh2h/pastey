@@ -7,7 +7,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function PastePage({ params }: PageProps): Promise<JSX.Element> {
+export default async function PastePage({ params }: PageProps) {
   // Schema is initialized at app startup, but keep as fallback for safety
   await initSchema();
   const { id } = await params;

@@ -1,4 +1,4 @@
-export default function NotFound(): JSX.Element {
+export default function NotFound() {
   return (
     <div className="min-h-screen bg-white p-8 flex items-center justify-center">
       <div className="text-center">

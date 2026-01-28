@@ -21,13 +21,17 @@ interface CreateRequest {
   max_views?: unknown;
 }
 
-interface ValidationResult {
-  valid: boolean;
-  error?: string;
-  content?: string;
-  ttl_seconds?: number;
-  max_views?: number;
-}
+type ValidationResult =
+  | {
+      valid: false;
+      error: string;
+    }
+  | {
+      valid: true;
+      content: string;
+      ttl_seconds?: number;
+      max_views?: number;
+    };
 
 function validateCreateRequest(body: CreateRequest): ValidationResult {
   if (!body.content || typeof body.content !== 'string' || body.content.trim().length === 0) {
